@@ -37,9 +37,11 @@ FusionEKF::FusionEKF() {
    * TODO: Set the process and measurement noises
    */
   // create a 4D state vector, we don't know yet the values of the x state
-  ekf_.Init(VectorXd(4), MatrixXd(4, 4), MatrixXd(4, 4),
-            MatrixXd(2, 4), MatrixXd(2, 2), MatrixXd(4, 4));
-
+  ekf_.x_ = VectorXd(4); 
+  ekf_.P_ = MatrixXd(4, 4); 
+  ekf_.F_ = MatrixXd(4, 4);
+  ekf_.Q_ = MatrixXd(4, 4);
+  
   // state covariance matrix P
   ekf_.P_ << 1, 0, 0, 0,
              0, 1, 0, 0,
@@ -56,15 +58,6 @@ FusionEKF::FusionEKF() {
              0, 0, 0, 0,
              0, 0, 0, 0,
              0, 0, 0, 0;
-
-  // measurement matrix
-  ekf_.H_ << 1, 0, 0, 0,
-             0, 1, 0, 0;
-
-  // measurement covariance
-  ekf_.R_ << 0.0225, 0,
-             0, 0.0225;
-
 
   // set the acceleration noise components
   noise_ax = 9;
@@ -105,6 +98,12 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
       double vx = rho_dot * cos(theta);
       double vy = rho_dot * sin(theta);
 
+      if ( px < 0.0001 ) {
+        px = 0.0001;
+      }
+      if ( py < 0.0001 ) {
+        py = 0.0001;
+      }
       ekf_.x_ << px,py,vx,vy;
 
     }
