@@ -30,6 +30,6 @@ and implemented the EKF.
 |Dataset| Output | Zoom-out |RMSE|
 |--------|----------|----|-----|
 |Dataset 1|![dataset1](images/dataset1_output.png)|![dataset1 zoomout](images/dataset1_zoomout.png)| **X**:0.09, **Y**:0.08, **VX**:0.45, **VY**:0.44 |
-|Dataset 1|![dataset2](images/dataset1_output.png)|![dataset2 zoomout](images/dataset1_zoomout.png)| **X**:0.07, **Y**:0.09, **VX**:0.42, **VY**:0.50 |
+|Dataset 2|![dataset2](images/dataset2_output.png)|![dataset2 zoomout](images/dataset2_zoomout.png)| **X**:0.07, **Y**:0.09, **VX**:0.42, **VY**:0.50 |
 
 
